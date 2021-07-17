@@ -22,11 +22,11 @@
     <PackageReference Include="Caliburn.Micro.Core" Version="4.0.173" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="91.1.211" />
     <PackageReference Include="MahApps.Metro" Version="2.4.7" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Converters\" />
   </ItemGroup>
 
 </Project>
