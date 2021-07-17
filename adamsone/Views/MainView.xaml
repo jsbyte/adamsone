@@ -5,9 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Adamsone.Views"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:viewModels="clr-namespace:Adamsone.ViewModels"
+        xmlns:converters="clr-namespace:Adamsone.Converters"
         mc:Ignorable="d"
         Title="Adamson One" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
 
+    <mah:MetroWindow.Resources>
+        <converters:MenuPageToMenuItemConverter x:Key="MenuConverter"/>
+        <converters:SelectedMenuItemConverter x:Key="SelectedItemConverter"/>
+        <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type viewModels:MenuItem}">
+            <Grid Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=CompactPaneLength, Mode=OneWay}" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ContentControl Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{Binding Icon}"
+                        Focusable="False" />
+                <TextBlock Grid.Column="1"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="{Binding Label}" />
+            </Grid>
+        </DataTemplate>
+        <Style BasedOn="{StaticResource {x:Type Frame}}" TargetType="{x:Type Frame}">
+            <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.SystemControlBackgroundChromeWhite}" />
+            <Setter Property="ClipToBounds" Value="True" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <mah:TransitioningContentControl RestartTransitionOnContentChange="True"
+                                                  Transition="Custom">
+                            <mah:TransitioningContentControl.CustomVisualStates>
+                                <VisualState x:Name="CustomTransition">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                   Storyboard.TargetName="CurrentContentPresentationSite"
+                                                   Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.150" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                   Storyboard.TargetName="CurrentContentPresentationSite"
+                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="200" />
+                                            <SplineDoubleKeyFrame KeySpline="0.1, 0.9, 0.2, 1"
+                                            KeyTime="00:00:00.300"
+                                            Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                   Storyboard.TargetName="PreviousContentPresentationSite"
+                                                   Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </mah:TransitioningContentControl.CustomVisualStates>
+                        </mah:TransitioningContentControl>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </mah:MetroWindow.Resources>
+
+    <Grid>
+        <mah:HamburgerMenu x:Name="MenuControl"
+                                DisplayMode="CompactOverlay"
+                                IsPaneOpen="False"
+                                SelectedItem="{Binding ActiveItem, Converter={StaticResource SelectedItemConverter}}"
+                                ItemTemplate="{StaticResource MenuItemTemplate}"
+                                ItemsSource="{Binding AppMenu, Converter={StaticResource MenuConverter}}"
+                                OptionsItemTemplate="{StaticResource MenuItemTemplate}"
+                                OptionsItemsSource="{Binding AppOptionsMenu}">
+            <mah:HamburgerMenu.Content>
+                <mah:TransitioningContentControl x:Name="ActiveItem" RestartTransitionOnContentChange="True"
+                                                 Transition="Custom">
+                    <mah:TransitioningContentControl.CustomVisualStates>
+                        <VisualState x:Name="CustomTransition">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                   Storyboard.TargetName="CurrentContentPresentationSite"
+                                                   Storyboard.TargetProperty="(UIElement.Opacity)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.150" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                   Storyboard.TargetName="CurrentContentPresentationSite"
+                                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="200" />
+                                    <SplineDoubleKeyFrame KeySpline="0.1, 0.9, 0.2, 1"
+                                            KeyTime="00:00:00.300"
+                                            Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                   Storyboard.TargetName="PreviousContentPresentationSite"
+                                                   Storyboard.TargetProperty="(UIElement.Opacity)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </mah:TransitioningContentControl.CustomVisualStates>
+                </mah:TransitioningContentControl>
+            </mah:HamburgerMenu.Content>
+        </mah:HamburgerMenu>
     </Grid>
 </mah:MetroWindow>
