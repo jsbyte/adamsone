@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Adamsone.Views"
+             xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            <TextBlock Text="{Binding Label}"></TextBlock>
+            <wpf:ChromiumWebBrowser x:Name="Browser" Address="www.google.com"></wpf:ChromiumWebBrowser>
     </Grid>
 </UserControl>
