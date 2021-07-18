@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:Adamsone.ViewModels"
         xmlns:converters="clr-namespace:Adamsone.Converters"
         mc:Ignorable="d"
-        Title="Adamson One" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Adamson One" Height="768" Width="1366" WindowStartupLocation="CenterScreen">
 
     <mah:MetroWindow.Resources>
         <converters:MenuPageToMenuItemConverter x:Key="MenuConverter"/>
