@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 using MahApps.Metro.IconPacks;
 
@@ -50,9 +52,21 @@ namespace Adamsone.ViewModels
                 new SettingsViewModel()
             };
 
-            ActivateItemAsync(AppMenu.First());
+            PreRenderingAsync().ConfigureAwait(false);
 
             base.OnViewLoaded(view);
         }
+
+        public async Task PreRenderingAsync()
+        {
+            foreach (var item in AppMenu)
+            {
+                await ActivateItemAsync(item);
+                await Task.Delay(10);
+            }
+
+            await ActivateItemAsync(AppMenu.First());
+        }
+
     }
 }
