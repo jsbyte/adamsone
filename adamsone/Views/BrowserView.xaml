@@ -8,6 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            <wpf:ChromiumWebBrowser x:Name="Browser" Address="www.google.com"></wpf:ChromiumWebBrowser>
+        <wpf:ChromiumWebBrowser x:Name="Browser" WebBrowser="{Binding WebBrowser, Mode=OneWayToSource}"></wpf:ChromiumWebBrowser>
     </Grid>
 </UserControl>
