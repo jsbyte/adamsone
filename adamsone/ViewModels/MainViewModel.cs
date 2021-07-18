@@ -68,5 +68,9 @@ namespace Adamsone.ViewModels
             await ActivateItemAsync(AppMenu.First());
         }
 
+        protected override Task ChangeActiveItemAsync(object newItem, bool closePrevious, CancellationToken cancellationToken)
+        {
+            return base.ChangeActiveItemAsync(newItem, false, cancellationToken);
+        }
     }
 }
