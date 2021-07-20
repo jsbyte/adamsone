@@ -60,6 +60,8 @@ namespace Adamsone.ViewModels
                 new BrowserViewModel("AdU", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.SolidSchool}),
                 new BrowserViewModel("Blackboard", new PackIconBoxIcons {Kind = PackIconBoxIconsKind.SolidChalkboard}),
                 new BrowserViewModel("Gmail", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosGoogle}),
+                new BrowserViewModel("Facebook", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosFacebook}),
+                new BrowserViewModel("Twitter", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosTwitter}),
                 new BrowserViewModel("Notes", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.SolidNote}),
                 new SettingsViewModel()
             };
