@@ -41,6 +41,18 @@ namespace Adamsone.ViewModels
             }
         }
 
+        private bool _isNoteFlyoutOpen;
+
+        public bool IsNoteFlyoutOpen
+        {
+            get => _isNoteFlyoutOpen;
+            set
+            {
+                _isNoteFlyoutOpen = value;
+                NotifyOfPropertyChange(nameof(IsNoteFlyoutOpen));
+            }
+        }
+
         protected override void OnViewLoaded(object view)
         {
             AppMenu = new ObservableCollection<MenuPageViewModelBase>
@@ -71,6 +83,11 @@ namespace Adamsone.ViewModels
         protected override Task ChangeActiveItemAsync(object newItem, bool closePrevious, CancellationToken cancellationToken)
         {
             return base.ChangeActiveItemAsync(newItem, false, cancellationToken);
+        }
+
+        public void OpenNoteFlyout()
+        {
+            IsNoteFlyoutOpen = true;
         }
     }
 }

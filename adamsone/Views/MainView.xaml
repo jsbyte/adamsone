@@ -7,6 +7,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:viewModels="clr-namespace:Adamsone.ViewModels"
         xmlns:converters="clr-namespace:Adamsone.Converters"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="Adamson One" Height="768" Width="1366" WindowStartupLocation="CenterScreen">
 
@@ -69,20 +70,56 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="AccentCircleButtonStyle"
+               BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
+               TargetType="{x:Type ButtonBase}">
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </mah:MetroWindow.Resources>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button>
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="4" VerticalAlignment="Center" Text="Student ID"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <mah:Flyout x:Name="NoteFlyout"
+                        Header="One Note"
+                        Position="Right" 
+                        IsOpen="{Binding IsNoteFlyoutOpen}" 
+                        Theme="Adapt">
+                <Grid Width="400" Margin="10">
+                    <TextBlock Text="This flyout adapts the theme of the current window" />
+                </Grid>
+            </mah:Flyout>
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
 
     <Grid>
-        <mah:HamburgerMenu x:Name="MenuControl"
-                                DisplayMode="CompactOverlay"
-                                IsPaneOpen="False"
-                                SelectedItem="{Binding ActiveItem, Converter={StaticResource SelectedItemConverter}}"
-                                ItemTemplate="{StaticResource MenuItemTemplate}"
-                                ItemsSource="{Binding AppMenu, Converter={StaticResource MenuConverter}}"
-                                OptionsItemTemplate="{StaticResource MenuItemTemplate}"
-                                OptionsItemsSource="{Binding AppOptionsMenu}">
+        <mah:HamburgerMenu x:Name="MenuControl" PaneBackground="#FF232122"
+                           DisplayMode="CompactOverlay"
+                           IsPaneOpen="False"
+                           SelectedItem="{Binding ActiveItem, Converter={StaticResource SelectedItemConverter}}"
+                           ItemTemplate="{StaticResource MenuItemTemplate}"
+                           ItemsSource="{Binding AppMenu, Converter={StaticResource MenuConverter}}"
+                           OptionsItemTemplate="{StaticResource MenuItemTemplate}"
+                           OptionsItemsSource="{Binding AppOptionsMenu}">
             <mah:HamburgerMenu.Content>
-                <mah:TransitioningContentControl x:Name="ActiveItem" RestartTransitionOnContentChange="True"
-                                                 Transition="Custom">
+                <mah:TransitioningContentControl x:Name="ActiveItem" RestartTransitionOnContentChange="True" 
+                                                     Transition="Custom">
                     <mah:TransitioningContentControl.CustomVisualStates>
                         <VisualState x:Name="CustomTransition">
                             <Storyboard>
@@ -112,5 +149,16 @@
                 </mah:TransitioningContentControl>
             </mah:HamburgerMenu.Content>
         </mah:HamburgerMenu>
+        <Button x:Name="OpenNoteFlyout"
+                Width="40"
+                Height="40"
+                Margin="30"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Style="{StaticResource AccentCircleButtonStyle}">
+            <iconPacks:PackIconBoxIcons Width="20"
+                                      Height="20"
+                                      Kind="RegularNote" />
+        </Button>
     </Grid>
 </mah:MetroWindow>
