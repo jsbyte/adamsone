@@ -40,6 +40,12 @@ namespace Adamsone.ViewModels
                         case "Gmail":
                             WebBrowser.LoadGmail();
                             break;
+                        case "Facebook":
+                            WebBrowser.LoadFacebook();
+                            break;
+                        case "Twitter":
+                            WebBrowser.LoadTwitter();
+                            break;
                     }
 
                     NotifyOfPropertyChange(nameof(WebBrowser));
