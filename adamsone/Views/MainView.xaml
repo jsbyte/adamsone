@@ -97,12 +97,35 @@
     <mah:MetroWindow.Flyouts>
         <mah:FlyoutsControl>
             <mah:Flyout x:Name="NoteFlyout"
-                        Header="One Note"
-                        Position="Right" 
+                        Margin="0,30,0,0"
+                        Header="New Note"
+                        Position="Right"
                         IsOpen="{Binding IsNoteFlyoutOpen}" 
-                        Theme="Adapt">
-                <Grid Width="400" Margin="10">
-                    <TextBlock Text="This flyout adapts the theme of the current window" />
+                        Theme="Adapt" Opacity="0.9">
+                <Grid Width="250" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBox Text="{Binding CurrentNote}" 
+                             BorderThickness="0,1,0,0"
+                             TextWrapping="Wrap" 
+                             AcceptsReturn="True" 
+                             FontFamily="Arial" 
+                             FontSize="14" 
+                             FontWeight="Bold" 
+                             mah:TextBoxHelper.Watermark="type note here.">
+                    </TextBox>
+                    <UniformGrid Grid.Row="1"
+                                 Margin="10" 
+                                 Columns="2">
+                        <Button Margin="10"
+                                Content="Save"
+                                Style="{DynamicResource MahApps.Styles.Button.Square.Accent}" />
+                        <Button Margin="10"
+                                Content="Discard"
+                                Style="{DynamicResource MahApps.Styles.Button.Square.Accent}" />
+                    </UniformGrid>
                 </Grid>
             </mah:Flyout>
         </mah:FlyoutsControl>

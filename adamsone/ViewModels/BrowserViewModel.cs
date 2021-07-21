@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Adamsone.Extensions;
+using CefSharp;
 using CefSharp.Wpf;
 using MahApps.Metro.IconPacks;
 
@@ -14,7 +16,7 @@ namespace Adamsone.ViewModels
     {
         public BrowserViewModel(string label, PackIconBoxIcons icon) : base(label, icon)
         {
-            WebBrowser = new ChromiumWebBrowser();
+            //WebBrowser = new ChromiumWebBrowser();
         }
 
         private ChromiumWebBrowser _webBrowser;
