@@ -53,6 +53,18 @@ namespace Adamsone.ViewModels
             }
         }
 
+        private string _currentNote;
+
+        public string CurrentNote
+        {
+            get => _currentNote;
+            set
+            {
+                _currentNote = value;
+                NotifyOfPropertyChange(nameof(CurrentNote));
+            }
+        }
+
         protected override void OnViewLoaded(object view)
         {
             AppMenu = new ObservableCollection<MenuPageViewModelBase>
@@ -60,7 +72,7 @@ namespace Adamsone.ViewModels
                 new BrowserViewModel("AdU", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.SolidSchool}),
                 new BrowserViewModel("Blackboard", new PackIconBoxIcons {Kind = PackIconBoxIconsKind.SolidChalkboard}),
                 new BrowserViewModel("Gmail", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosGoogle}),
-                new BrowserViewModel("Notes", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.SolidNote}),
+                new NoteViewModel(),
                 new SettingsViewModel()
             };
 
