@@ -20,7 +20,7 @@
                    BasedOn="{StaticResource {x:Type Label}}"
                    TargetType="{x:Type Label}">
                 <Setter Property="FontSize" Value="22" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

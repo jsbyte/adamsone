@@ -13,7 +13,7 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Content="{Binding MessageText}" Style="{DynamicResource DescriptionHeaderStyle}"/>
+        <Label Margin="10,0,0,0" Content="{Binding MessageText}" Style="{DynamicResource DescriptionHeaderStyle}"/>
         <Border Grid.Row="1" Margin="10" Background="#FFFBF9E9" CornerRadius="0,0,20,0">
             <ScrollViewer>
                 <TextBox x:Name="TextBoxInput"
