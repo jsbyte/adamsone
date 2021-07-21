@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Adamsone.ViewModels;
 using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Adamsone
 {
@@ -20,7 +21,7 @@ namespace Adamsone
         protected override void Configure()
         {
             _container.Instance(_container);
-
+            
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
