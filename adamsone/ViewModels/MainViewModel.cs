@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Adamsone.Infrastructure;
 using Caliburn.Micro;
 using MahApps.Metro.IconPacks;
 
@@ -13,9 +14,12 @@ namespace Adamsone.ViewModels
 {
     public class MainViewModel : Conductor<object>
     {
-        public MainViewModel()
-        {
+        public ConfigManager ConfigManager { get; }
+        
 
+        public MainViewModel(ConfigManager configManager)
+        {
+            ConfigManager = configManager;
         }
 
         private ObservableCollection<MenuPageViewModelBase> _appMenu;

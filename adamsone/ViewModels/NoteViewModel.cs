@@ -60,8 +60,12 @@ namespace Adamsone.ViewModels
                 {
 
                 }
+                else if (instance.Delete)
+                {
+                    NoteCollection.Remove(note);
+                }
                 await metroWindow.HideMetroDialogAsync(userInputDialog);
-            }, "Save", "Discard");
+            }, "Save", "Delete", "Discard");
 
             dialogViewModel.MessageText = "One Note";
             dialogViewModel.UserInput = note.Content;
