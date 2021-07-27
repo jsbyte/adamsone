@@ -28,32 +28,38 @@
         </StackPanel.Resources>
         <StackPanel Margin="0,30,0,0">
             <Label Margin="0,0,0,10" Content="Auto Credentials" Style="{DynamicResource DescriptionHeaderStyle}"></Label>
-            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Live" FlowDirection="LeftToRight"/>
+            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Live" FlowDirection="LeftToRight" IsOn="{Binding Config.IsAdamsonEnable}"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
-                         mah:TextBoxHelper.Watermark="Student ID"/>
-                <PasswordBox Style="{StaticResource SettingPasswordBoxStyle}"
-                             mah:TextBoxHelper.ClearTextButton="{Binding RelativeSource={RelativeSource Self}, Path=(mah:TextBoxHelper.HasText), Mode=OneWay}"
-                             mah:TextBoxHelper.Watermark="Credential"/>
+                         mah:TextBoxHelper.Watermark="Student ID"
+                         Text="{Binding Config.StudentId}"/>
+                <TextBox Style="{StaticResource SettingTextBoxStyle}"
+                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                         mah:TextBoxHelper.Watermark="Credential"
+                         Text="{Binding Config.AdamsonCredential}"/>
             </StackPanel>
-            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Blackboard" FlowDirection="LeftToRight"/>
+            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Blackboard" FlowDirection="LeftToRight" IsOn="{Binding Config.IsBlackboardEnable}"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
-                         mah:TextBoxHelper.Watermark="Student ID"/>
-                <PasswordBox Style="{StaticResource SettingPasswordBoxStyle}"
-                             mah:TextBoxHelper.ClearTextButton="{Binding RelativeSource={RelativeSource Self}, Path=(mah:TextBoxHelper.HasText), Mode=OneWay}"
-                             mah:TextBoxHelper.Watermark="Credential"/>
+                         mah:TextBoxHelper.Watermark="Student ID"
+                         Text="{Binding Config.StudentId}"/>
+                <TextBox Style="{StaticResource SettingTextBoxStyle}"
+                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                         mah:TextBoxHelper.Watermark="Credential"
+                         Text="{Binding Config.BlackboardCredential}"/>
             </StackPanel>
-            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Gmail" FlowDirection="LeftToRight"/>
+            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Gmail" FlowDirection="LeftToRight" IsOn="{Binding Config.IsEmailEnable}"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
-                         mah:TextBoxHelper.Watermark="Email Address"/>
-                <PasswordBox Style="{StaticResource SettingPasswordBoxStyle}"
-                             mah:TextBoxHelper.ClearTextButton="{Binding RelativeSource={RelativeSource Self}, Path=(mah:TextBoxHelper.HasText), Mode=OneWay}"
-                             mah:TextBoxHelper.Watermark="Credential"/>
+                         mah:TextBoxHelper.Watermark="Email Address"
+                         Text="{Binding Config.Email}"/>
+                <TextBox Style="{StaticResource SettingTextBoxStyle}"
+                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                         mah:TextBoxHelper.Watermark="Credential"
+                         Text="{Binding Config.EmailCredential}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,30,0,0">
@@ -83,6 +89,13 @@
                         Content="Export"
                         Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
             </DockPanel>
+        </StackPanel>
+        <StackPanel Margin="0,30,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="ButtonSave" Margin="0,0,50,0"
+                    Width="80"
+                    Height="10"
+                    Content="Save"
+                    Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
