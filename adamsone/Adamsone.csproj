@@ -6,6 +6,8 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>Lumpia</AssemblyName>
     <ApplicationIcon>logo.ico</ApplicationIcon>
+    <StartupObject>Adamsone.App</StartupObject>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(PlatformTarget)' == 'x86'">
