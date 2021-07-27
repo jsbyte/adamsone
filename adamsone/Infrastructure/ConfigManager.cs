@@ -20,13 +20,15 @@ namespace Adamsone.Infrastructure
         {
             Path = System.IO.Path.Combine(Environment.CurrentDirectory, "store.json");
             Load();
-            Save();
         }
 
         public void Load()
         {
             if (!File.Exists(Path))
-                File.Create(Path).Close();
+            {
+                Config = new Config();
+                Save();
+            }
 
             Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path));
         }

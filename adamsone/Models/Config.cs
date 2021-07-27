@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using Newtonsoft.Json;
 
 namespace Adamsone.Models
 {
+    [JsonObject(MemberSerialization.OptOut)]
     public class Config : PropertyChangedBase
     {
         private bool _isAdamsonEnable;
