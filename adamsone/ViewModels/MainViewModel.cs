@@ -79,7 +79,7 @@ namespace Adamsone.ViewModels
                 new BrowserViewModel("Facebook", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosFacebook}),
                 new BrowserViewModel("Twitter", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosTwitter}),
                 new NoteViewModel(),
-                new SettingsViewModel()
+                new SettingsViewModel(this)
             };
 
             PreRenderingAsync().ConfigureAwait(false);

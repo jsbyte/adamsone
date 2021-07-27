@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Adamsone.Extensions;
+using Adamsone.Infrastructure;
+using Caliburn.Micro;
 using CefSharp;
 using CefSharp.Wpf;
 using MahApps.Metro.IconPacks;
@@ -30,12 +32,15 @@ namespace Adamsone.ViewModels
                 _webBrowser = value;
                 if (value != null)
                 {
+                    var config = IoC.Get<ConfigManager>().Config;
                     switch (Label)
                     {
                         case "AdU":
+                            WebBrowser.ExecuteScriptAsyncWhenPageLoaded($"$('#inputUsername').val('{config.StudentId}');$('#inputPassword').val('{config.AdamsonCredential}');$('#btnlogin').click();");
                             WebBrowser.LoadAduLive();
                             break;
                         case "Blackboard":
+                            WebBrowser.ExecuteScriptAsyncWhenPageLoaded($"document.getElementById('user_id').value = {config.StudentId};document.getElementById('password').value = '{config.BlackboardCredential}';document.getElementById('entry-login').click();");
                             WebBrowser.LoadBlackboard();
                             break;
                         case "Gmail":
