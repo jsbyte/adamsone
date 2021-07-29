@@ -18,7 +18,10 @@ namespace Adamsone
         protected override void OnStartup(StartupEventArgs e)
         {
             var settings = new CefSettings();
+            settings.SetOffScreenRenderingBestPerformanceArgs();
+            settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
             Cef.Initialize(settings);
+            Cef.EnableHighDPISupport();
             base.OnStartup(e);
         }
     }
