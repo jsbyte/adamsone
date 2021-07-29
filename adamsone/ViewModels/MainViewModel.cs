@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Adamsone.Infrastructure;
+using Adamsone.Models;
 using Caliburn.Micro;
 using MahApps.Metro.IconPacks;
 
@@ -15,7 +16,7 @@ namespace Adamsone.ViewModels
     public class MainViewModel : Conductor<object>
     {
         public ConfigManager ConfigManager { get; }
-        
+
 
         public MainViewModel(ConfigManager configManager)
         {
@@ -81,7 +82,7 @@ namespace Adamsone.ViewModels
                 new NoteViewModel(),
                 new SettingsViewModel(this)
             };
-            
+
             PreRenderingAsync().ConfigureAwait(false);
 
             base.OnViewLoaded(view);
@@ -106,6 +107,24 @@ namespace Adamsone.ViewModels
         public void OpenNoteFlyout()
         {
             IsNoteFlyoutOpen = true;
+        }
+
+        public void CloseNoteFlyout()
+        {
+            IsNoteFlyoutOpen = false;
+        }
+
+        public void SaveCurrentNote()
+        {
+            ConfigManager.Config.NoteCollection.Add(new Note(CurrentNote));
+            ConfigManager.Save();
+            DiscardCurrentNote();
+        }
+
+        public void DiscardCurrentNote()
+        {
+            CurrentNote = string.Empty;
+            CloseNoteFlyout();
         }
     }
 }

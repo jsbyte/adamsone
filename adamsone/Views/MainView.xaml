@@ -120,10 +120,12 @@
                     <UniformGrid Grid.Row="1"
                                  Margin="10" 
                                  Columns="2">
-                        <Button Margin="10"
+                        <Button cal:Message.Attach="SaveCurrentNote"
+                                Margin="10"
                                 Content="Save"
                                 Style="{DynamicResource MahApps.Styles.Button.Square.Accent}" />
-                        <Button Margin="10"
+                        <Button cal:Message.Attach="DiscardCurrentNote"
+                                Margin="10"
                                 Content="Discard"
                                 Style="{DynamicResource MahApps.Styles.Button.Square.Accent}" />
                     </UniformGrid>
