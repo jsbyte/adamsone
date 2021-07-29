@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using Adamsone.Models;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.IconPacks;
 
 namespace Adamsone.ViewModels
@@ -30,9 +34,15 @@ namespace Adamsone.ViewModels
             Config = mainViewModel.ConfigManager.Config;
         }
 
-        public void ButtonSave()
+        public async void ButtonSave()
         {
+            var metroWindow = Application.Current.MainWindow as MetroWindow;
+            var controller = await metroWindow.ShowProgressAsync("Please Wait", "Saving configuration...");
+            controller.SetIndeterminate();
             MainViewModel.ConfigManager.Save();
+
+            await Task.Delay(500);
+            await controller.CloseAsync();
         }
     }
 }
