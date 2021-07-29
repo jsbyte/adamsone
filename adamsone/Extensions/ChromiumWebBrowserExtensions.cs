@@ -28,10 +28,11 @@ namespace Adamsone.Extensions
 
         public static void LoadBlackboard(this ChromiumWebBrowser webBrowser)
         {
+            webBrowser.ExecuteScriptAsyncWhenPageLoaded("cookieConsent.agree('/webapps/login/?action=logout')");
+
             if (Config.IsBlackboardEnable)
                 webBrowser.ExecuteScriptAsyncWhenPageLoaded($"document.getElementById('user_id').value = {Config.StudentId};document.getElementById('password').value = '{Config.BlackboardCredential}';document.getElementById('entry-login').click()");
 
-            webBrowser.ExecuteScriptAsyncWhenPageLoaded("cookieConsent.agree('/webapps/login/?action=logout')");
             webBrowser.Address = BlackboardUrl;
         }
 
