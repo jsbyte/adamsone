@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Adamsone.Views"
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:components="clr-namespace:Adamsone.Components"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1366">
     <StackPanel Margin="10" HorizontalAlignment="Center">
@@ -17,9 +18,7 @@
                 <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True"/>
                 <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="True"/>
             </Style>
-            <Style x:Key="SettingPasswordBoxStyle" 
-                   TargetType="PasswordBox"
-                   BasedOn="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}">
+            <Style TargetType="{x:Type components:BindablePasswordBox}">
                 <Setter Property="Margin" Value="10"/>
                 <Setter Property="Width" Value="250px"/>
                 <Setter Property="mah:TextBoxHelper.IsWaitingForData" Value="False"/>
@@ -33,22 +32,18 @@
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
                          mah:TextBoxHelper.Watermark="Student ID"
+                         MaxLength="16"
                          Text="{Binding Config.StudentId}"/>
-                <TextBox Style="{StaticResource SettingTextBoxStyle}"
-                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
-                         mah:TextBoxHelper.Watermark="Credential"
-                         Text="{Binding Config.AdamsonCredential}"/>
+                <components:BindablePasswordBox Password="{Binding Config.AdamsonCredential}"/>
             </StackPanel>
             <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Blackboard" FlowDirection="LeftToRight" IsOn="{Binding Config.IsBlackboardEnable}"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
                          mah:TextBoxHelper.Watermark="Student ID"
+                         MaxLength="16"
                          Text="{Binding Config.StudentId}"/>
-                <TextBox Style="{StaticResource SettingTextBoxStyle}"
-                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
-                         mah:TextBoxHelper.Watermark="Credential"
-                         Text="{Binding Config.BlackboardCredential}"/>
+                <components:BindablePasswordBox Password="{Binding Config.BlackboardCredential}"/>
             </StackPanel>
             <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Gmail" FlowDirection="LeftToRight" IsOn="{Binding Config.IsEmailEnable}"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
@@ -56,17 +51,14 @@
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
                          mah:TextBoxHelper.Watermark="Email Address"
                          Text="{Binding Config.Email}"/>
-                <TextBox Style="{StaticResource SettingTextBoxStyle}"
-                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
-                         mah:TextBoxHelper.Watermark="Credential"
-                         Text="{Binding Config.EmailCredential}"/>
+                <components:BindablePasswordBox Password="{Binding Config.EmailCredential}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="0,30,0,0">
             <Label Margin="0,0,0,10" Content="Preferences" Style="{DynamicResource DescriptionHeaderStyle}"></Label>
             <DockPanel Margin="5">
                 <Label>Save Cookies</Label>
-                <mah:ToggleSwitch Margin="0,0,0,0" HorizontalAlignment="Right" FlowDirection="RightToLeft"/>
+                <mah:ToggleSwitch Margin="0,0,0,0" HorizontalAlignment="Right" FlowDirection="RightToLeft" IsOn="{Binding Config.IsSaveCookiesEnable}"/>
             </DockPanel>
             <DockPanel Margin="5">
                 <Label>Refresh All Page</Label>
