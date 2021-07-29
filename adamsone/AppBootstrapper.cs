@@ -30,7 +30,7 @@ namespace Adamsone
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
-                .Where(type => type.Name.EndsWith("ViewModel"))
+                .Where(type => type.Name.EndsWith("ViewModel") && type.Name != "BrowserViewModel")
                 .ToList()
                 .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType, viewModelType.ToString(), viewModelType));
 

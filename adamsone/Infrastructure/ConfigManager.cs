@@ -36,6 +36,7 @@ namespace Adamsone.Infrastructure
         public void Save()
         {
             File.WriteAllText(Path, JsonConvert.SerializeObject(Config));
+            Load();
         }
     }
 }
