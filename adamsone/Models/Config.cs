@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
@@ -96,6 +97,18 @@ namespace Adamsone.Models
             {
                 _emailCredential = value;
                 NotifyOfPropertyChange(nameof(EmailCredential));
+            }
+        }
+
+        private bool _isSaveCookiesEnable = true;
+
+        public bool IsSaveCookiesEnable
+        {
+            get => _isSaveCookiesEnable;
+            set
+            {
+                _isSaveCookiesEnable = value;
+                NotifyOfPropertyChange(nameof(IsSaveCookiesEnable));
             }
         }
 
