@@ -27,7 +27,8 @@
                          FontFamily="Arial"
                          FontSize="14"
                          FontWeight="Bold"
-                         KeyDown="TextBoxInput_KeyDown" Background="{x:Null}"/>
+                         KeyDown="TextBoxInput_KeyDown" 
+                         Background="{x:Null}"/>
             </ScrollViewer>
         </Border>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0">

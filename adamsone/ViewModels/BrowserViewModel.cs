@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Adamsone.Extensions;
 using Adamsone.Infrastructure;
 using Caliburn.Micro;
@@ -32,33 +33,33 @@ namespace Adamsone.ViewModels
                 _webBrowser = value;
                 if (value != null)
                 {
+                    WebBrowser.Name = Label;
                     WebBrowser.UseAdvancedHandlers();
-                    LoadPage();
+                    LoadPage(WebBrowser);
 
                     NotifyOfPropertyChange(nameof(WebBrowser));
                 }
             }
         }
 
-        public void LoadPage()
+        public static void LoadPage(ChromiumWebBrowser chromiumWebBrowser)
         {
-            switch (Label)
+            switch (chromiumWebBrowser.Name)
             {
                 case "AdU":
-                    WebBrowser.LoadAduLive();
+                    chromiumWebBrowser.LoadAduLive();
                     break;
                 case "Blackboard":
-
-                    WebBrowser.LoadBlackboard();
+                    chromiumWebBrowser.LoadBlackboard();
                     break;
                 case "Gmail":
-                    WebBrowser.LoadGmail();
+                    chromiumWebBrowser.LoadGmail();
                     break;
                 case "Facebook":
-                    WebBrowser.LoadFacebook();
+                    chromiumWebBrowser.LoadFacebook();
                     break;
                 case "Twitter":
-                    WebBrowser.LoadTwitter();
+                    chromiumWebBrowser.LoadTwitter();
                     break;
             }
         }
