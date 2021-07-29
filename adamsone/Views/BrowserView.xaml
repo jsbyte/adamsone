@@ -8,6 +8,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Adamsone.Views.BrowserView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
         <wpf:ChromiumWebBrowser x:Name="Browser" WebBrowser="{Binding WebBrowser, Mode=OneWayToSource}"/>
     </Grid>

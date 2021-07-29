@@ -19,7 +19,7 @@ namespace Adamsone.ViewModels
     {
         public BrowserViewModel(string label, PackIconBoxIcons icon) : base(label, icon)
         {
-            //WebBrowser = new ChromiumWebBrowser();
+
         }
 
         private ChromiumWebBrowser _webBrowser;
@@ -32,30 +32,34 @@ namespace Adamsone.ViewModels
                 _webBrowser = value;
                 if (value != null)
                 {
-                    var config = IoC.Get<ConfigManager>().Config;
-                    switch (Label)
-                    {
-                        case "AdU":
-                            WebBrowser.ExecuteScriptAsyncWhenPageLoaded($"$('#inputUsername').val('{config.StudentId}');$('#inputPassword').val('{config.AdamsonCredential}');$('#btnlogin').click();");
-                            WebBrowser.LoadAduLive();
-                            break;
-                        case "Blackboard":
-                            WebBrowser.ExecuteScriptAsyncWhenPageLoaded($"document.getElementById('user_id').value = {config.StudentId};document.getElementById('password').value = '{config.BlackboardCredential}';document.getElementById('entry-login').click();");
-                            WebBrowser.LoadBlackboard();
-                            break;
-                        case "Gmail":
-                            WebBrowser.LoadGmail();
-                            break;
-                        case "Facebook":
-                            WebBrowser.LoadFacebook();
-                            break;
-                        case "Twitter":
-                            WebBrowser.LoadTwitter();
-                            break;
-                    }
+                    WebBrowser.UseAdvancedHandlers();
+                    LoadPage();
 
                     NotifyOfPropertyChange(nameof(WebBrowser));
                 }
+            }
+        }
+
+        public void LoadPage()
+        {
+            switch (Label)
+            {
+                case "AdU":
+                    WebBrowser.LoadAduLive();
+                    break;
+                case "Blackboard":
+
+                    WebBrowser.LoadBlackboard();
+                    break;
+                case "Gmail":
+                    WebBrowser.LoadGmail();
+                    break;
+                case "Facebook":
+                    WebBrowser.LoadFacebook();
+                    break;
+                case "Twitter":
+                    WebBrowser.LoadTwitter();
+                    break;
             }
         }
     }

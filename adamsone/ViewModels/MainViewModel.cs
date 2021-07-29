@@ -81,7 +81,7 @@ namespace Adamsone.ViewModels
                 new NoteViewModel(),
                 new SettingsViewModel(this)
             };
-
+            
             PreRenderingAsync().ConfigureAwait(false);
 
             base.OnViewLoaded(view);
