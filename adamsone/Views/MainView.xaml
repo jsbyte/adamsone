@@ -142,6 +142,7 @@
                            ItemTemplate="{StaticResource MenuItemTemplate}"
                            ItemsSource="{Binding AppMenu, Converter={StaticResource MenuConverter}}"
                            OptionsItemTemplate="{StaticResource MenuItemTemplate}"
+                           SelectedOptionsItem="{Binding ActiveItem, Converter={StaticResource SelectedItemConverter}}"
                            OptionsItemsSource="{Binding AppOptionsMenu}">
             <mah:HamburgerMenu.Content>
                 <mah:TransitioningContentControl x:Name="ActiveItem" RestartTransitionOnContentChange="True" 
