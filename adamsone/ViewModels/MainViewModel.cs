@@ -79,7 +79,11 @@ namespace Adamsone.ViewModels
                 new BrowserViewModel("Gmail", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosGoogle}),
                 new BrowserViewModel("Facebook", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosFacebook}),
                 new BrowserViewModel("Twitter", new PackIconBoxIcons{Kind = PackIconBoxIconsKind.LogosTwitter}),
-                new NoteViewModel(),
+                new NoteViewModel()
+            };
+
+            AppOptionsMenu = new ObservableCollection<MenuPageViewModelBase>
+            {
                 new SettingsViewModel(this)
             };
 
@@ -101,7 +105,7 @@ namespace Adamsone.ViewModels
 
         protected override Task ChangeActiveItemAsync(object newItem, bool closePrevious, CancellationToken cancellationToken)
         {
-            return base.ChangeActiveItemAsync(newItem, false, cancellationToken);
+            return base.ChangeActiveItemAsync(newItem ?? ActiveItem, false, cancellationToken);
         }
 
         public void OpenNoteFlyout()
