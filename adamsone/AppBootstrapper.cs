@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Adamsone.Infrastructure;
+using Adamsone.Services;
 using Adamsone.ViewModels;
 using Caliburn.Micro;
 using MahApps.Metro.Controls.Dialogs;
@@ -26,14 +27,16 @@ namespace Adamsone
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
-                .Singleton<ConfigManager>();
+                .Singleton<ConfigManager>()
+                .Singleton<WebSessionManager>()
+                .Singleton<KeepAliveService>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel") && type.Name != "BrowserViewModel")
                 .ToList()
                 .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType, viewModelType.ToString(), viewModelType));
-
+            
             base.Configure();
         }
 

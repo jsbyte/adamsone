@@ -26,7 +26,7 @@
             </Style>
         </StackPanel.Resources>
         <StackPanel Margin="0,30,0,0">
-            <Label Margin="0,0,0,10" Content="Auto Credentials" Style="{DynamicResource DescriptionHeaderStyle}"></Label>
+            <Label Margin="0,0,0,10" Content="Auto Credentials" Style="{DynamicResource DescriptionHeaderStyle}"/>
             <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Live" FlowDirection="LeftToRight" IsOn="{Binding Config.IsAdamsonEnable}"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
@@ -69,7 +69,8 @@
             </DockPanel>
             <DockPanel Margin="5">
                 <Label>Clear Cache</Label>
-                <Button Width="80"
+                <Button x:Name="ButtonClearCache"
+                        Width="80"
                         Height="10"
                         Content="Clear"
                         Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>

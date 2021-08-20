@@ -21,9 +21,11 @@
 	</PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.16.0" />
     <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
     <PackageReference Include="Caliburn.Micro.Core" Version="4.0.173" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="91.1.230" />
+    <PackageReference Include="Flurl.Http" Version="3.2.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.7" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
