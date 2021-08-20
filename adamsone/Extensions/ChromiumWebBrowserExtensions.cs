@@ -5,6 +5,7 @@ using Caliburn.Micro;
 using CefSharp;
 using CefSharp.Handler;
 using CefSharp.Wpf;
+using CefSharp.Wpf.Rendering.Experimental;
 
 namespace Adamsone.Extensions
 {

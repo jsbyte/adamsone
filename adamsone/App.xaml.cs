@@ -18,8 +18,13 @@ namespace Adamsone
         protected override void OnStartup(StartupEventArgs e)
         {
             var settings = new CefSettings();
-            settings.SetOffScreenRenderingBestPerformanceArgs();
+            //settings.SetOffScreenRenderingBestPerformanceArgs();
             settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
+            settings.CefCommandLineArgs.Add("off-screen-frame-rate", "60");
+            settings.CefCommandLineArgs.Add("enable-media-stream", "1");
+            settings.CefCommandLineArgs.Add("enable-gpu", "1");
+            settings.CefCommandLineArgs.Add("enable-webgl", "1");
+            settings.CefCommandLineArgs.Add("shared-texture-enabled");
             Cef.Initialize(settings);
             Cef.EnableHighDPISupport();
             base.OnStartup(e);
