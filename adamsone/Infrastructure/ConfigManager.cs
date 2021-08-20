@@ -41,10 +41,5 @@ namespace Adamsone.Infrastructure
             File.WriteAllText(Path, EncryptProvider.AESEncrypt(JsonConvert.SerializeObject(Config), _key));
             Load();
         }
-
-        public void ExportAllNote()
-        {
-
-        }
     }
 }

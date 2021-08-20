@@ -77,7 +77,8 @@
             </DockPanel>
             <DockPanel Margin="5">
                 <Label>Export Notes</Label>
-                <Button Width="80"
+                <Button x:Name="ButtonExportAllNote"
+                        Width="80"
                         Height="10"
                         Content="Export"
                         Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>

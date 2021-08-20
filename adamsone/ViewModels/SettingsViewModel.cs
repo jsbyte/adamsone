@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,36 @@ namespace Adamsone.ViewModels
 
             await Task.Delay(500);
             await controller.CloseAsync();
+        }
+
+        public async void ButtonExportAllNote()
+        {
+            var fileName = $"export_all_note_{DateTime.Now.ToFileTime()}.txt";
+            var outputDirectory = Path.Combine(Environment.CurrentDirectory, "exports");
+            var outputPath = Path.Combine(outputDirectory, fileName);
+
+            var metroWindow = Application.Current.MainWindow as MetroWindow;
+            var controller = await metroWindow.ShowProgressAsync("Please Wait", "Saving configuration...");
+            controller.SetIndeterminate();
+
+            if (!Directory.Exists(outputDirectory))
+                Directory.CreateDirectory(outputDirectory);
+
+            await Task.Run(() =>
+            {
+                using (var streamWriter = File.CreateText(outputPath))
+                {
+                    foreach (var note in Config.NoteCollection)
+                    {
+                        streamWriter.WriteLine($"ID: {note.Id}\r\nCreated: {note.Created}\r\n{note.Content}\r\n");
+                    }
+
+                    streamWriter.Close();
+                }
+            }).ContinueWith(task =>
+            {
+                controller.CloseAsync();
+            });
         }
     }
 }
