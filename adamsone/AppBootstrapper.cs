@@ -29,14 +29,15 @@ namespace Adamsone
                 .Singleton<IEventAggregator, EventAggregator>()
                 .Singleton<ConfigManager>()
                 .Singleton<WebSessionManager>()
-                .Singleton<KeepAliveService>();
+                .Singleton<KeepAliveService>()
+                .Singleton<ProfileService>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel") && type.Name != "BrowserViewModel")
                 .ToList()
                 .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType, viewModelType.ToString(), viewModelType));
-            
+
             base.Configure();
         }
 
