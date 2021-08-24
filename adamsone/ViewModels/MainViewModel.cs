@@ -6,9 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using Adamsone.Infrastructure;
 using Adamsone.Models;
+using Adamsone.Services;
 using Caliburn.Micro;
+using CefSharp.DevTools.Profiler;
 using MahApps.Metro.IconPacks;
 
 namespace Adamsone.ViewModels
@@ -17,10 +20,10 @@ namespace Adamsone.ViewModels
     {
         public ConfigManager ConfigManager { get; }
 
-
-        public MainViewModel(ConfigManager configManager)
+        public MainViewModel(ConfigManager configManager, ProfileService profileService)
         {
             ConfigManager = configManager;
+            ProfileService = profileService;
         }
 
         private ObservableCollection<MenuPageViewModelBase> _appMenu;
@@ -47,7 +50,6 @@ namespace Adamsone.ViewModels
         }
 
         private bool _isNoteFlyoutOpen;
-
         public bool IsNoteFlyoutOpen
         {
             get => _isNoteFlyoutOpen;
@@ -55,6 +57,18 @@ namespace Adamsone.ViewModels
             {
                 _isNoteFlyoutOpen = value;
                 NotifyOfPropertyChange(nameof(IsNoteFlyoutOpen));
+            }
+        }
+
+        private bool _isProfileFlyoutOpen;
+
+        public bool IsProfileFlyoutOpen
+        {
+            get => _isProfileFlyoutOpen;
+            set
+            {
+                _isProfileFlyoutOpen = value;
+                NotifyOfPropertyChange(nameof(IsProfileFlyoutOpen));
             }
         }
 
@@ -69,6 +83,10 @@ namespace Adamsone.ViewModels
                 NotifyOfPropertyChange(nameof(CurrentNote));
             }
         }
+
+        public ProfileService ProfileService { get; }
+
+        public Student Student => ProfileService.Student;
 
         protected override void OnViewLoaded(object view)
         {
@@ -116,6 +134,12 @@ namespace Adamsone.ViewModels
         public void CloseNoteFlyout()
         {
             IsNoteFlyoutOpen = false;
+        }
+
+        public void OpenProfileFlyout()
+        {
+            IsProfileFlyoutOpen = true;
+            ProfileService.UpdateStudentProfile();
         }
 
         public void SaveCurrentNote()

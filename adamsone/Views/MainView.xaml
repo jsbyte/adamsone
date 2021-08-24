@@ -84,15 +84,7 @@
     </mah:MetroWindow.Resources>
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
-            <Button>
-                <Button.ContentTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="4" VerticalAlignment="Center" Text="Student ID"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </Button.ContentTemplate>
-            </Button>
+            <Button cal:Message.Attach="OpenProfileFlyout" Content="{Binding Student.StudentNumber, TargetNullValue=Sign In}" ContentStringFormat="{}{0} (MORE)"/>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     <mah:MetroWindow.Flyouts>
@@ -130,6 +122,172 @@
                                 Style="{DynamicResource MahApps.Styles.Button.Square.Accent}" />
                     </UniformGrid>
                 </Grid>
+            </mah:Flyout>
+            <mah:Flyout x:Name="ProfileFlyout"
+                        Margin="0,30,0,0"
+                        Header="Your Profile" 
+                        mah:HeaderedControlHelper.HeaderFontSize="22"
+                        Position="Right"
+                        IsOpen="{Binding IsProfileFlyoutOpen}"
+                        Theme="Adapt">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <Grid DataContext="{Binding Student}" Margin="0,0,0,30">
+                        <Grid.Resources>
+                            <CollectionViewSource x:Key="GroupedGrades" Source="{Binding Grades}">
+                                <CollectionViewSource.GroupDescriptions>
+                                    <PropertyGroupDescription PropertyName="Semester"/>
+                                </CollectionViewSource.GroupDescriptions>
+                            </CollectionViewSource>
+                            <CollectionViewSource x:Key="GroupedAssessmentFees" Source="{Binding AssessmentFees}">
+                                <CollectionViewSource.GroupDescriptions>
+                                    <PropertyGroupDescription PropertyName="Semester"/>
+                                </CollectionViewSource.GroupDescriptions>
+                            </CollectionViewSource>
+                            <Style BasedOn="{StaticResource {x:Type Label}}"
+                                   TargetType="{x:Type Label}">
+                                <Setter Property="FontSize" Value="22" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="Margin" Value="30,25,0,15"/>
+                            </Style>
+                            <Style BasedOn="{StaticResource {x:Type DataGrid}}"
+                                   TargetType="{x:Type DataGrid}">
+                                <Setter Property="Margin" Value="60,0,60,0"/>
+                                <Setter Property="CanUserAddRows" Value="False"/>
+                                <Setter Property="CanUserDeleteRows" Value="False"/>
+                                <Setter Property="AutoGenerateColumns" Value="False"/>
+                                <Setter Property="SelectionUnit" Value="FullRow"/>
+                                <Setter Property="HeadersVisibility" Value="Column"/>
+                                <Setter Property="Width" Value="800"/>
+                                <Setter Property="IsReadOnly" Value="True"/>
+                                <!--<Setter Property="IsHitTestVisible" Value="False"></Setter>-->
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <!--Student Information-->
+                        <Grid>
+                            <Grid.Resources>
+                                <Style BasedOn="{StaticResource {x:Type Label}}"
+                                       TargetType="{x:Type Label}">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Margin" Value="60,0,0,0"></Setter>
+                                </Style>
+                                <Style BasedOn="{StaticResource {x:Type TextBlock}}"
+                                       TargetType="{x:Type TextBlock}">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                                <Style BasedOn="{StaticResource {x:Type DataGridRow}}"
+                                       TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="Height" Value="35" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Full Name"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FullName}"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Program"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Program}"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="Student Number"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding StudentNumber}"/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="Semester"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Semester}"/>
+                        </Grid>
+
+                        <!--Assessment Fee-->
+                        <Label Grid.Row="1" Content="Assessment Fees"/>
+                        <DataGrid Grid.Row="2"
+                                  ItemsSource="{Binding Source={StaticResource GroupedAssessmentFees}}">
+                            <DataGrid.GroupStyle>
+                                <GroupStyle ContainerStyle="{StaticResource MahApps.Styles.GroupItem.DataGrid}">
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Mode="OneWay" Path="Name" />
+                                                        <Binding Converter="{converters:ItemCountConverter}"
+                                                             Mode="OneWay"
+                                                             Path="ItemCount" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </DataGrid.GroupStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Transaction}" Width="4*" Header="Billing Details" />
+                                <DataGridTextColumn Binding="{Binding Amount}" Width="1*" Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!--Grade Information-->
+                        <Label Grid.Row="3" Content="My Grade"/>
+                        <DataGrid Grid.Row="4"
+                              ItemsSource="{Binding Source={StaticResource GroupedGrades}}">
+                            <DataGrid.GroupStyle>
+                                <GroupStyle ContainerStyle="{StaticResource MahApps.Styles.GroupItem.DataGrid}">
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Mode="OneWay" Path="Name" />
+                                                        <Binding Converter="{converters:ItemCountConverter}"
+                                                             Mode="OneWay"
+                                                             Path="ItemCount" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </DataGrid.GroupStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding SubjectCode}" Width="1*" Header="Code" />
+                                <DataGridTextColumn Binding="{Binding SubjectDescription}" Width="4*" Header="Description" />
+                                <DataGridTextColumn Binding="{Binding Units}" Width="1*" Header="Units" />
+                                <DataGridTextColumn Binding="{Binding Prelim}" Width="1*" Header="Prelim" />
+                                <DataGridTextColumn Binding="{Binding Midterm}" Width="1*" Header="Midterm" />
+                                <DataGridTextColumn Binding="{Binding Final}" Width="1*" Header="Final" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!--Payment Information-->
+                        <Label Grid.Row="5" Content="My Payment"/>
+                        <DataGrid Grid.Row="6"
+                              ItemsSource="{Binding Payments}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding OrderNumber}" Width="1*" Header="OR No." />
+                                <DataGridTextColumn Binding="{Binding OrderDate}" Width="1*" Header="OR Date" />
+                                <DataGridTextColumn Binding="{Binding SchoolYear}" Width="1*" Header="School Year" />
+                                <DataGridTextColumn Binding="{Binding Term}" Width="1*" Header="Term" />
+                                <DataGridTextColumn Binding="{Binding Type}" Width="1*" Header="Type" />
+                                <DataGridTextColumn Binding="{Binding Amount}" Width="1*" Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </ScrollViewer>
             </mah:Flyout>
         </mah:FlyoutsControl>
     </mah:MetroWindow.Flyouts>
