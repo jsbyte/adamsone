@@ -51,6 +51,8 @@ namespace Adamsone.ViewModels
                 else if (instance.Delete)
                 {
                     NoteCollection.Remove(note);
+                    ConfigManager.Config.NoteCollection.Remove(note);
+                    ConfigManager.Save();
                 }
                 else
                 {
