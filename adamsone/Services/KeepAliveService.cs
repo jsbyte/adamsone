@@ -34,18 +34,18 @@ namespace Adamsone.Services
 
         public KeepAliveService(WebSessionManager webSessionManager)
         {
-            _keepAliveTimer = new Timer(TimeSpan.FromSeconds(30).TotalMilliseconds);
+            _keepAliveTimer = new Timer(TimeSpan.FromSeconds(300).TotalMilliseconds);
             _cookieManager = Cef.GetGlobalCookieManager();
 
             SessionManager = webSessionManager
                 .Add(WebsiteCode.Adamson)
                 .Add(WebsiteCode.Blackboard);
 
-            _keepAliveTimer.Elapsed += _keepAliveTimer_Elapsed;
+            _keepAliveTimer.Elapsed += KeepAliveTimer_Elapsed;
             _keepAliveTimer.Start();
         }
 
-        private void _keepAliveTimer_Elapsed(object sender, ElapsedEventArgs e)
+        private void KeepAliveTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             SessionManager.RetrieveCookiesAsync(WebsiteCode.Adamson);
             SessionManager.RetrieveCookiesAsync(WebsiteCode.Blackboard);
