@@ -65,16 +65,23 @@ namespace Adamsone.Services
         {
             Cookies = await SessionManager.RetrieveCookiesAsync(WebsiteCode.Adamson);
 
-            var studentInformation = await GetStudentInformation();
+            try
+            {
+                var studentInformation = await GetStudentInformation();
 
-            Student.StudentNumber = studentInformation.StudentNumber;
-            Student.FullName = studentInformation.FullName;
-            Student.Program = studentInformation.Program;
-            Student.Semester = studentInformation.Semester;
+                Student.StudentNumber = studentInformation.StudentNumber;
+                Student.FullName = studentInformation.FullName;
+                Student.Program = studentInformation.Program;
+                Student.Semester = studentInformation.Semester;
 
-            Student.Grades = await GetGrades(await GetSemesterCode());
-            Student.Payments = await GetPaymentHistory();
-            Student.AssessmentFees = await GetAssessmentFees(await GetSemesterCode(true));
+                Student.Grades = await GetGrades(await GetSemesterCode());
+                Student.Payments = await GetPaymentHistory();
+                Student.AssessmentFees = await GetAssessmentFees(await GetSemesterCode(true));
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
         }
 
         private async Task<dynamic> GetStudentInformation()
