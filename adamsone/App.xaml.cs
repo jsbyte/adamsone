@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,6 +26,9 @@ namespace Adamsone
             settings.CefCommandLineArgs.Add("enable-gpu", "1");
             settings.CefCommandLineArgs.Add("enable-webgl", "1");
             settings.CefCommandLineArgs.Add("shared-texture-enabled");
+            settings.PersistSessionCookies = true;
+            settings.PersistUserPreferences = true;
+            settings.CachePath = Path.GetFullPath("cache", Environment.CurrentDirectory);
             Cef.Initialize(settings);
             Cef.EnableHighDPISupport();
             base.OnStartup(e);
