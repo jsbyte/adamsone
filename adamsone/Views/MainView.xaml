@@ -130,7 +130,7 @@
                         Position="Right"
                         IsOpen="{Binding IsProfileFlyoutOpen}"
                         Theme="Adapt">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid DataContext="{Binding Student}" Margin="0,0,0,30">
                         <Grid.Resources>
                             <CollectionViewSource x:Key="GroupedGrades" Source="{Binding Grades}">
@@ -213,37 +213,9 @@
                             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Semester}"/>
                         </Grid>
 
-                        <!--Assessment Fee-->
-                        <Label Grid.Row="1" Content="Assessment Fees"/>
-                        <DataGrid Grid.Row="2"
-                                  ItemsSource="{Binding Source={StaticResource GroupedAssessmentFees}}">
-                            <DataGrid.GroupStyle>
-                                <GroupStyle ContainerStyle="{StaticResource MahApps.Styles.GroupItem.DataGrid}">
-                                    <GroupStyle.HeaderTemplate>
-                                        <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center">
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0} - {1}">
-                                                        <Binding Mode="OneWay" Path="Name" />
-                                                        <Binding Converter="{converters:ItemCountConverter}"
-                                                             Mode="OneWay"
-                                                             Path="ItemCount" />
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </GroupStyle.HeaderTemplate>
-                                </GroupStyle>
-                            </DataGrid.GroupStyle>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Transaction}" Width="4*" Header="Billing Details" />
-                                <DataGridTextColumn Binding="{Binding Amount}" Width="1*" Header="Amount" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-
                         <!--Grade Information-->
-                        <Label Grid.Row="3" Content="My Grade"/>
-                        <DataGrid Grid.Row="4"
+                        <Label Grid.Row="1" Content="My Grade"/>
+                        <DataGrid Grid.Row="2"
                               ItemsSource="{Binding Source={StaticResource GroupedGrades}}">
                             <DataGrid.GroupStyle>
                                 <GroupStyle ContainerStyle="{StaticResource MahApps.Styles.GroupItem.DataGrid}">
@@ -274,8 +246,8 @@
                         </DataGrid>
 
                         <!--Payment Information-->
-                        <Label Grid.Row="5" Content="My Payment"/>
-                        <DataGrid Grid.Row="6"
+                        <Label Grid.Row="3" Content="My Payment"/>
+                        <DataGrid Grid.Row="4"
                               ItemsSource="{Binding Payments}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding OrderNumber}" Width="1*" Header="OR No." />
@@ -283,6 +255,34 @@
                                 <DataGridTextColumn Binding="{Binding SchoolYear}" Width="1*" Header="School Year" />
                                 <DataGridTextColumn Binding="{Binding Term}" Width="1*" Header="Term" />
                                 <DataGridTextColumn Binding="{Binding Type}" Width="1*" Header="Type" />
+                                <DataGridTextColumn Binding="{Binding Amount}" Width="1*" Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!--Assessment Fee-->
+                        <Label Grid.Row="5" Content="Assessment Fees"/>
+                        <DataGrid Grid.Row="6"
+                                  ItemsSource="{Binding Source={StaticResource GroupedAssessmentFees}}">
+                            <DataGrid.GroupStyle>
+                                <GroupStyle ContainerStyle="{StaticResource MahApps.Styles.GroupItem.DataGrid}">
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Mode="OneWay" Path="Name" />
+                                                        <Binding Converter="{converters:ItemCountConverter}"
+                                                                 Mode="OneWay"
+                                                                 Path="ItemCount" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </DataGrid.GroupStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Transaction}" Width="4*" Header="Billing Details" />
                                 <DataGridTextColumn Binding="{Binding Amount}" Width="1*" Header="Amount" />
                             </DataGrid.Columns>
                         </DataGrid>
