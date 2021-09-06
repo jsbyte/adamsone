@@ -25,8 +25,8 @@ namespace Adamsone
             _container.Instance(_container);
 
             _container
-                .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<IWindowManager, WindowManager>()
                 .Singleton<ConfigManager>()
                 .Singleton<WebSessionManager>()
                 .Singleton<KeepAliveService>()

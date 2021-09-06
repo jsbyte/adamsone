@@ -8,6 +8,7 @@ using System.Text;
 using System.Timers;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using Adamsone.Contracts;
 using Adamsone.Models;
 using AngleSharp;
 using Caliburn.Micro;
@@ -16,19 +17,9 @@ using Flurl.Http;
 
 namespace Adamsone.Services
 {
-    public class ProfileService : PropertyChangedBase
+    public class ProfileService : PropertyChangedBase, IHandle<UpdateStudentProfileMessage>
     {
         public WebSessionManager SessionManager { get; }
-
-        public bool IsEnabled
-        {
-            get => _profileUpdateTimer.Enabled;
-            set
-            {
-                _profileUpdateTimer.Enabled = value;
-                NotifyOfPropertyChange(nameof(IsEnabled));
-            }
-        }
 
         private Student _student;
 
@@ -44,21 +35,14 @@ namespace Adamsone.Services
 
         public List<Cookie> Cookies { get; private set; }
 
-        private readonly Timer _profileUpdateTimer;
 
-        public ProfileService(WebSessionManager webSessionManager)
+        private readonly IEventAggregator _eventAggregator;
+        public ProfileService(WebSessionManager webSessionManager, IEventAggregator eventAggregator)
         {
             Student = new Student();
             SessionManager = webSessionManager;
-            _profileUpdateTimer = new Timer(TimeSpan.FromSeconds(30).TotalMilliseconds);
-            _profileUpdateTimer.Elapsed += OnProfileUpdateTimerOnElapsed;
-
-            _profileUpdateTimer.Start();
-        }
-
-        private async void OnProfileUpdateTimerOnElapsed(object sender, ElapsedEventArgs e)
-        {
-            await UpdateStudentProfile();
+            _eventAggregator = eventAggregator;
+            _eventAggregator.SubscribeOnBackgroundThread(this);
         }
 
         public async Task UpdateStudentProfile()
@@ -67,16 +51,23 @@ namespace Adamsone.Services
 
             try
             {
-                var studentInformation = await GetStudentInformation();
+                var studentInformationTask = GetStudentInformation();
+                var paymentHistoryTask = GetPaymentHistory();
+                var gradesTask = GetGrades(await GetSemesterCode());
+                var assessmentFeesTask = GetAssessmentFees(await GetSemesterCode(true));
 
-                Student.StudentNumber = studentInformation.StudentNumber;
-                Student.FullName = studentInformation.FullName;
-                Student.Program = studentInformation.Program;
-                Student.Semester = studentInformation.Semester;
+                await Task.WhenAll(studentInformationTask, paymentHistoryTask, gradesTask, assessmentFeesTask);
 
-                Student.Grades = await GetGrades(await GetSemesterCode());
-                Student.Payments = await GetPaymentHistory();
-                Student.AssessmentFees = await GetAssessmentFees(await GetSemesterCode(true));
+                Student.StudentNumber = studentInformationTask.Result.StudentNumber;
+                Student.FullName = studentInformationTask.Result.FullName;
+                Student.Program = studentInformationTask.Result.Program;
+                Student.Semester = studentInformationTask.Result.Semester;
+
+                Student.Grades = gradesTask.Result;
+                Student.Payments = paymentHistoryTask.Result;
+                Student.AssessmentFees = assessmentFeesTask.Result;
+
+
             }
             catch (Exception e)
             {
@@ -211,6 +202,12 @@ namespace Adamsone.Services
             }
 
             return assesmentFees;
+        }
+
+        public Task HandleAsync(UpdateStudentProfileMessage message, System.Threading.CancellationToken cancellationToken)
+        {
+            Task.Delay(message.Delay, cancellationToken).Wait();
+            return Task.Factory.StartNew(UpdateStudentProfile, cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
         }
     }
 }

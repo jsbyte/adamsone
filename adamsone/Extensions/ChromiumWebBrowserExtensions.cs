@@ -1,4 +1,7 @@
-﻿using Adamsone.Handlers;
+﻿using System;
+using System.Windows;
+using Adamsone.Contracts;
+using Adamsone.Handlers;
 using Adamsone.Infrastructure;
 using Adamsone.Models;
 using Caliburn.Micro;
@@ -22,7 +25,19 @@ namespace Adamsone.Extensions
         public static void LoadAduLive(this ChromiumWebBrowser webBrowser)
         {
             if (Config.IsAdamsonEnable)
-                webBrowser.ExecuteScriptAsyncWhenPageLoaded($"$('#inputUsername').val('{Config.StudentId}');$('#inputPassword').val('{Config.AdamsonCredential}');$('#btnlogin').click()");
+            {
+                webBrowser.ExecuteScriptAsyncWhenPageLoaded(
+                    $"$('#inputUsername').val('{Config.StudentId}');$('#inputPassword').val('{Config.AdamsonCredential}');$('#btnlogin').click()");
+
+
+                void Handler(object sender, RoutedEventArgs e)
+                {
+                    IoC.Get<IEventAggregator>().PublishOnBackgroundThreadAsync(new UpdateStudentProfileMessage(TimeSpan.FromSeconds(5)));
+                    webBrowser.Loaded -= Handler;
+                }
+
+                webBrowser.Loaded += Handler;
+            }
 
             webBrowser.Address = AduLiveUrl;
         }
