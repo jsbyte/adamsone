@@ -38,10 +38,28 @@ namespace Adamsone.ViewModels
                 {
                     WebBrowser.Name = Label;
                     WebBrowser.UseAdvancedHandlers();
+                    WebBrowser.LoadingStateChanged += WebBrowser_LoadingStateChanged;
                     LoadPage(WebBrowser);
 
                     NotifyOfPropertyChange(nameof(WebBrowser));
                 }
+            }
+        }
+
+        private void WebBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            IsLoading = e.IsLoading;
+        }
+
+        private bool _isLoading;
+
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                NotifyOfPropertyChange(nameof(IsLoading));
             }
         }
 

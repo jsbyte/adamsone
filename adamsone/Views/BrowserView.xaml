@@ -7,9 +7,17 @@
              xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Adamsone.Views.BrowserView"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" AllowDrop="True">
 
     <Grid>
         <wpf:ChromiumWebBrowser x:Name="Browser" WebBrowser="{Binding WebBrowser, Mode=OneWayToSource}"/>
+        <mah:MetroProgressBar VerticalAlignment="Top"
+                              IsIndeterminate="True"
+                              Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Maximum="100"
+                              Minimum="0" 
+                              Foreground="SkyBlue" 
+                              EllipseDiameter="5" 
+                              EllipseOffset="8"/>
     </Grid>
 </UserControl>
