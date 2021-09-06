@@ -59,6 +59,7 @@ namespace Adamsone.Extensions
             webBrowser.RequestHandler = new AdvancedRequestHandler();
             webBrowser.LoadHandler = new AdvancedLoadHandler();
             webBrowser.MenuHandler = new AdvancedContextMenuHandler();
+            webBrowser.DownloadHandler = new AdvancedDownloadHandler();
             webBrowser.ContextMenu = null;
         }
     }
