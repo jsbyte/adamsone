@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Adamsone.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Adamsone.Views"
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:components="clr-namespace:Adamsone.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1366">
+    <StackPanel Margin="10" HorizontalAlignment="Center">
+        <StackPanel.Resources>
+            <Style x:Key="SettingTextBoxStyle" 
+                   TargetType="TextBox"
+                   BasedOn="{StaticResource {x:Type TextBox}}">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Width" Value="250px"/>
+                <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True"/>
+                <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="True"/>
+            </Style>
+            <Style TargetType="{x:Type components:BindablePasswordBox}">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Width" Value="250px"/>
+                <Setter Property="mah:TextBoxHelper.IsWaitingForData" Value="False"/>
+                <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="True"/>
+            </Style>
+        </StackPanel.Resources>
+        <StackPanel Margin="0,30,0,0">
+            <Label Margin="0,0,0,10" Content="Auto Credentials" Style="{DynamicResource DescriptionHeaderStyle}"/>
+            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Live" FlowDirection="LeftToRight" IsOn="{Binding Config.IsAdamsonEnable}"/>
+            <StackPanel Orientation="Horizontal" Margin="-5">
+                <TextBox Style="{StaticResource SettingTextBoxStyle}"
+                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                         mah:TextBoxHelper.Watermark="Student ID"
+                         MaxLength="16"
+                         Text="{Binding Config.StudentId}"/>
+                <components:BindablePasswordBox Password="{Binding Config.AdamsonCredential}"/>
+            </StackPanel>
+            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Blackboard" FlowDirection="LeftToRight" IsOn="{Binding Config.IsBlackboardEnable}"/>
+            <StackPanel Orientation="Horizontal" Margin="-5">
+                <TextBox Style="{StaticResource SettingTextBoxStyle}"
+                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                         mah:TextBoxHelper.Watermark="Student ID"
+                         MaxLength="16"
+                         Text="{Binding Config.StudentId}"/>
+                <components:BindablePasswordBox Password="{Binding Config.BlackboardCredential}"/>
+            </StackPanel>
+            <!--<mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Gmail" FlowDirection="LeftToRight" IsOn="{Binding Config.IsEmailEnable}"/>
+            <StackPanel Orientation="Horizontal" Margin="-5">
+                <TextBox Style="{StaticResource SettingTextBoxStyle}"
+                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                         mah:TextBoxHelper.Watermark="Email Address"
+                         Text="{Binding Config.Email}"/>
+                <components:BindablePasswordBox Password="{Binding Config.EmailCredential}"/>
+            </StackPanel>-->
+        </StackPanel>
+        <StackPanel Margin="0,30,0,0">
+            <Label Margin="0,0,0,10" Content="Preferences" Style="{DynamicResource DescriptionHeaderStyle}"></Label>
+            <DockPanel Margin="5">
+                <Label>Save Cookies</Label>
+                <mah:ToggleSwitch Margin="0,0,0,0" HorizontalAlignment="Right" FlowDirection="RightToLeft" IsOn="{Binding Config.IsSaveCookiesEnable}" IsEnabled="False"/>
+            </DockPanel>
+            <DockPanel Margin="5">
+                <Label>Stay signed</Label>
+                <mah:ToggleSwitch Margin="0,0,0,0" HorizontalAlignment="Right" FlowDirection="RightToLeft" IsOn="True" IsEnabled="False"/>
+            </DockPanel>
+            <DockPanel Margin="5">
+                <Label>Refresh All Page</Label>
+                <Button Width="80"
+                        Height="10"
+                        Content="Refresh"
+                        Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
+            </DockPanel>
+            <DockPanel Margin="5">
+                <Label>Clear Cache</Label>
+                <Button x:Name="ButtonClearCache"
+                        Width="80"
+                        Height="10"
+                        Content="Clear"
+                        Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
+            </DockPanel>
+            <DockPanel Margin="5">
+                <Label>Export Notes</Label>
+                <Button x:Name="ButtonExportAllNote"
+                        Width="80"
+                        Height="10"
+                        Content="Export"
+                        Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel Margin="0,30,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="ButtonSave" Margin="0,0,50,0"
+                    Width="80"
+                    Height="10"
+                    Content="Save"
+                    Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
