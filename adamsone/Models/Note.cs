@@ -14,7 +14,17 @@ namespace Adamsone.Models
     {
         public Guid Id { get; set; }
 
-        public DateTime Created { get; set; }
+        private DateTime _updated;
+
+        public DateTime Updated
+        {
+            get => _updated;
+            set
+            {
+                _updated = value;
+                NotifyOfPropertyChange(nameof(Updated));
+            }
+        }
 
         private string _content;
         public string Content
@@ -23,6 +33,7 @@ namespace Adamsone.Models
             set
             {
                 _content = value;
+                Updated = DateTime.Now;
                 NotifyOfPropertyChange(nameof(Content));
             }
         }
@@ -30,7 +41,7 @@ namespace Adamsone.Models
         public Note(string content)
         {
             Id = Guid.NewGuid();
-            Created = DateTime.Now;
+            Updated = DateTime.Now;
             Content = content;
         }
     }

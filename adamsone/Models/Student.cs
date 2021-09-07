@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Caliburn.Micro;
 
 namespace Adamsone.Models
@@ -84,6 +85,18 @@ namespace Adamsone.Models
             {
                 _assessmentFees = value;
                 NotifyOfPropertyChange(nameof(AssessmentFees));
+            }
+        }
+
+        private DateTime _updatedTime;
+
+        public DateTime UpdatedTime
+        {
+            get => _updatedTime;
+            set
+            {
+                _updatedTime = value;
+                NotifyOfPropertyChange(nameof(UpdatedTime));
             }
         }
 

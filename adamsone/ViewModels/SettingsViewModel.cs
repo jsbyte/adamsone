@@ -92,7 +92,7 @@ namespace Adamsone.ViewModels
                 {
                     foreach (var note in Config.NoteCollection)
                     {
-                        streamWriter.WriteLine($"ID: {note.Id}\r\nCreated: {note.Created}\r\n{note.Content}\r\n");
+                        streamWriter.WriteLine($"ID: {note.Id}\r\nCreated: {note.Updated}\r\n{note.Content}\r\n");
                     }
 
                     streamWriter.Close();

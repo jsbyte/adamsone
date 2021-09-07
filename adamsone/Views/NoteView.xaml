@@ -36,7 +36,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock 
-                                Text="{Binding Created}" Foreground="#FF878787" />
+                                Text="{Binding Updated}" Foreground="#FF878787" />
                             <!--<GridSplitter Grid.Row="1" Background="White" IsEnabled="False"/>-->
                             <TextBlock Grid.Row="2"
                                        Text="{Binding Content}"
