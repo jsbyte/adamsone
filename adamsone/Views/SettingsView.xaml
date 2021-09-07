@@ -45,20 +45,24 @@
                          Text="{Binding Config.StudentId}"/>
                 <components:BindablePasswordBox Password="{Binding Config.BlackboardCredential}"/>
             </StackPanel>
-            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Gmail" FlowDirection="LeftToRight" IsOn="{Binding Config.IsEmailEnable}"/>
+            <!--<mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Gmail" FlowDirection="LeftToRight" IsOn="{Binding Config.IsEmailEnable}"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
                          mah:TextBoxHelper.Watermark="Email Address"
                          Text="{Binding Config.Email}"/>
                 <components:BindablePasswordBox Password="{Binding Config.EmailCredential}"/>
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
         <StackPanel Margin="0,30,0,0">
             <Label Margin="0,0,0,10" Content="Preferences" Style="{DynamicResource DescriptionHeaderStyle}"></Label>
             <DockPanel Margin="5">
                 <Label>Save Cookies</Label>
-                <mah:ToggleSwitch Margin="0,0,0,0" HorizontalAlignment="Right" FlowDirection="RightToLeft" IsOn="{Binding Config.IsSaveCookiesEnable}"/>
+                <mah:ToggleSwitch Margin="0,0,0,0" HorizontalAlignment="Right" FlowDirection="RightToLeft" IsOn="{Binding Config.IsSaveCookiesEnable}" IsEnabled="False"/>
+            </DockPanel>
+            <DockPanel Margin="5">
+                <Label>Stay signed</Label>
+                <mah:ToggleSwitch Margin="0,0,0,0" HorizontalAlignment="Right" FlowDirection="RightToLeft" IsOn="True" IsEnabled="False"/>
             </DockPanel>
             <DockPanel Margin="5">
                 <Label>Refresh All Page</Label>
