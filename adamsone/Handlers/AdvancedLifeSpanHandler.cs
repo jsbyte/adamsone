@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Adamsone.Extensions;
 using CefSharp;
+using CefSharp.Wpf;
 
 namespace Adamsone.Handlers
 {
@@ -14,8 +16,12 @@ namespace Adamsone.Handlers
             IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
         {
             // Set newBrowser to null unless you're attempting to host the popup in a new instance of ChromiumWebBrowser
-            newBrowser = null;
+            //newBrowser = null;
 
+
+            var advBrowser = new ChromiumWebBrowser(targetUrl);
+            advBrowser.UseAdvancedHandlers();
+            newBrowser = advBrowser;
             // Return true to cancel the popup creation
             return false;
         }
