@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using Adamsone.Models;
 using Adamsone.Services;
 using Caliburn.Micro;
-using CefSharp;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.IconPacks;
-using Cef = CefSharp.Core.Cef;
 
 namespace Adamsone.ViewModels
 {

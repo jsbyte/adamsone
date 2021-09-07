@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using Adamsone.Models;
 using NETCore.Encrypt;
-using NETCore.Encrypt.Internal;
 using Newtonsoft.Json;
 
 namespace Adamsone.Infrastructure

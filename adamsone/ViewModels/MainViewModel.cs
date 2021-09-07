@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
 using Adamsone.Infrastructure;
 using Adamsone.Models;
 using Adamsone.Services;
 using Caliburn.Micro;
-using CefSharp.DevTools.Profiler;
 using MahApps.Metro.IconPacks;
 
 namespace Adamsone.ViewModels

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Adamsone.Infrastructure;
 using Adamsone.Services;
 using Adamsone.ViewModels;
 using Caliburn.Micro;
-using MahApps.Metro.Controls.Dialogs;
 
 namespace Adamsone
 {

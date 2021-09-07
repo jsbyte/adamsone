@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using Adamsone.Extensions;
 using Caliburn.Micro;
 using CefSharp;
-using CefSharp.Wpf;
 using Flurl.Http;
 
 namespace Adamsone.Services
