@@ -125,7 +125,7 @@
             </mah:Flyout>
             <mah:Flyout x:Name="ProfileFlyout"
                         Margin="0,30,0,0"
-                        Header="Your Profile" 
+                        Header="Your Profile"
                         mah:HeaderedControlHelper.HeaderFontSize="22"
                         Position="Right"
                         IsOpen="{Binding IsProfileFlyoutOpen}"
@@ -202,15 +202,17 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Content="Full Name"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FullName}"/>
-                            <Label Grid.Row="1" Grid.Column="0" Content="Program"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Program}"/>
-                            <Label Grid.Row="2" Grid.Column="0" Content="Student Number"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding StudentNumber}"/>
-                            <Label Grid.Row="3" Grid.Column="0" Content="Semester"/>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Semester}"/>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" Content="{Binding UpdatedTime}" ContentStringFormat="{}Updated as of {0:MMM d, yyyy \a\t HH:mm:ss tt}"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Full Name"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FullName}"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="Program"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Program}"/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="Student Number"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding StudentNumber}"/>
+                            <Label Grid.Row="4" Grid.Column="0" Content="Semester"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Semester}"/>
                         </Grid>
 
                         <!--Grade Information-->

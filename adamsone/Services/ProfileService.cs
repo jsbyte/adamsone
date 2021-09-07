@@ -67,7 +67,7 @@ namespace Adamsone.Services
                 Student.Payments = paymentHistoryTask.Result;
                 Student.AssessmentFees = assessmentFeesTask.Result;
 
-
+                Student.UpdatedTime = DateTime.Now;
             }
             catch (Exception e)
             {
