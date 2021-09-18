@@ -22,32 +22,53 @@ namespace Adamsone.Extensions
 
         public static void LoadAduLive(this ChromiumWebBrowser webBrowser)
         {
-            if (Config.IsAdamsonEnable)
-            {
-                webBrowser.ExecuteScriptAsyncWhenPageLoaded(
-                    $"$('#inputUsername').val('{Config.StudentId}');$('#inputPassword').val('{Config.AdamsonCredential}');$('#btnlogin').click()");
+            webBrowser.LoginAduLive();
+            webBrowser.Address = AduLiveUrl;
+        }
 
+        public static void LoginAduLive(this ChromiumWebBrowser webBrowser)
+        {
+            if (Config.IsAdamsonCredentialValid)
+            {
+                var script = $"$('#inputUsername').val('{Config.StudentId}');$('#inputPassword').val('{Config.AdamsonCredential}');$('#btnlogin').click()";
+                webBrowser.GetMainFrame().ExecuteJavaScriptAsync(script);
+                IoC.Get<IEventAggregator>().PublishOnBackgroundThreadAsync(new UpdateStudentProfileMessage(TimeSpan.FromSeconds(5)));
 
                 void Handler(object sender, RoutedEventArgs e)
                 {
-                    IoC.Get<IEventAggregator>().PublishOnBackgroundThreadAsync(new UpdateStudentProfileMessage(TimeSpan.FromSeconds(5)));
+                    webBrowser.ExecuteScriptAsyncWhenPageLoaded(script);
                     webBrowser.Loaded -= Handler;
                 }
 
                 webBrowser.Loaded += Handler;
             }
-
-            webBrowser.Address = AduLiveUrl;
         }
 
         public static void LoadBlackboard(this ChromiumWebBrowser webBrowser)
         {
             webBrowser.ExecuteScriptAsyncWhenPageLoaded("cookieConsent.agree('/webapps/login/?action=logout')");
-
-            if (Config.IsBlackboardEnable)
-                webBrowser.ExecuteScriptAsyncWhenPageLoaded($"document.getElementById('user_id').value = {Config.StudentId};document.getElementById('password').value = '{Config.BlackboardCredential}';document.getElementById('entry-login').click()");
-
+            webBrowser.LoginBlackboard();
             webBrowser.Address = BlackboardUrl;
+        }
+
+        public static void LoginBlackboard(this ChromiumWebBrowser webBrowser)
+        {
+            if (Config.IsBlackboardCredentialValid)
+            {
+                var script =
+                    $"document.getElementById('user_id').value = {Config.StudentId};document.getElementById('password').value = '{Config.BlackboardCredential}';document.getElementById('entry-login').click()";
+                
+                if (webBrowser.IsBrowserInitialized)
+                    webBrowser.GetMainFrame().ExecuteJavaScriptAsync(script);
+
+                void Handler(object sender, RoutedEventArgs e)
+                {
+                    webBrowser.ExecuteScriptAsyncWhenPageLoaded(script);
+                    webBrowser.Loaded -= Handler;
+                }
+
+                webBrowser.Loaded += Handler;
+            }
         }
 
         public static void LoadGmail(this ChromiumWebBrowser webBrowser)
