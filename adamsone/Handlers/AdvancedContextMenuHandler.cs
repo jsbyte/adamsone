@@ -26,6 +26,7 @@ namespace Adamsone.Handlers
 
             model.InsertItemAt(0, CefMenuCommand.Reload, "Refresh");
             model.AddItem((CefMenuCommand.CustomFirst), "Home Page");
+            model.AddItem((CefMenuCommand.CustomLast), "Auto Login");
             model.AddItem((CefMenuCommand)26501, "Show DevTools");
             model.AddItem((CefMenuCommand)26502, "Close DevTools");
         }
@@ -202,6 +203,11 @@ namespace Adamsone.Handlers
                                 case CefMenuCommand.CustomFirst:
                                     {
                                         BrowserViewModel.LoadPage(webBrowser);
+                                        break;
+                                    }
+                                case CefMenuCommand.CustomLast:
+                                    {
+                                        BrowserViewModel.LoginWithSavedCredential(webBrowser);
                                         break;
                                     }
                             }

@@ -70,5 +70,18 @@ namespace Adamsone.ViewModels
                     break;
             }
         }
+
+        public static void LoginWithSavedCredential(ChromiumWebBrowser chromiumWebBrowser)
+        {
+            switch (chromiumWebBrowser.Name)
+            {
+                case "AdU":
+                    chromiumWebBrowser.LoginAduLive();
+                    break;
+                case "Blackboard":
+                    chromiumWebBrowser.LoginBlackboard();
+                    break;
+            }
+        }
     }
 }
