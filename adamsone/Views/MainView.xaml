@@ -84,7 +84,7 @@
     </mah:MetroWindow.Resources>
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
-            <Button cal:Message.Attach="OpenProfileFlyout" Content="{Binding Student.StudentNumber, TargetNullValue=Sign In}" ContentStringFormat="{}{0} (MORE)"/>
+            <Button cal:Message.Attach="OpenProfileFlyout" Content="{Binding Student.StudentNumber, TargetNullValue=Sign In}" ContentStringFormat="{}{0} (My Profile)" FontWeight="UltraBold"/>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     <mah:MetroWindow.Flyouts>
@@ -115,10 +115,13 @@
                         <Button cal:Message.Attach="SaveCurrentNote"
                                 Margin="10"
                                 Content="Save"
+                                mah:ControlsHelper.ContentCharacterCasing="Normal"
                                 Style="{DynamicResource MahApps.Styles.Button.Square.Accent}" />
                         <Button cal:Message.Attach="DiscardCurrentNote"
+                                Background="#FF6666"
                                 Margin="10"
                                 Content="Discard"
+                                mah:ControlsHelper.ContentCharacterCasing="Normal"
                                 Style="{DynamicResource MahApps.Styles.Button.Square.Accent}" />
                     </UniformGrid>
                 </Grid>

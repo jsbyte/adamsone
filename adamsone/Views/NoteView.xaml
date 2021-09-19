@@ -7,7 +7,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
              dialog:DialogParticipation.Register="{Binding}"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer>
         <ItemsControl x:Name="NoteCollection" VerticalAlignment="Top" HorizontalAlignment="Center">
@@ -18,7 +18,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="15" Background="#FFFBF9E9" CornerRadius="0,0,20,0"><Border.Effect>
+                    <Border Margin="15" Background="#FFFCFBF2" CornerRadius="0,0,20,0"><Border.Effect>
                             <DropShadowEffect BlurRadius="20" ShadowDepth="5" Opacity="0.3"></DropShadowEffect>
                         </Border.Effect>
                         <Grid Width="300px" Height="200px">
