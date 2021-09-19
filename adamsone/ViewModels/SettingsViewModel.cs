@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Adamsone.Models;
@@ -64,6 +65,25 @@ namespace Adamsone.ViewModels
             MainViewModel.ConfigManager.Save();
 
             await Task.Delay(500);
+            await controller.CloseAsync();
+
+            var friendlyMessage = new StringBuilder("\r\n")
+                .AppendLine("If the credentials you entered is correct, try right click on AdU/Blackboard or reboot Adamsone to experience Automatic Login feature.")
+                .AppendLine("\r\n")
+                .AppendLine("This message will automatically close in 5 seconds.");
+            var dialogSettings = new MetroDialogSettings
+            {
+                OwnerCanCloseWithDialog = true
+            };
+            controller = await metroWindow.ShowProgressAsync("Configuration Saved!", friendlyMessage.ToString(), false, dialogSettings);
+            controller.Maximum = 3000;
+
+            for (int i = 0; i <= 3000; i += 20)
+            {
+                controller.SetProgress(i);
+                await Task.Delay(20);
+            }
+
             await controller.CloseAsync();
         }
 
