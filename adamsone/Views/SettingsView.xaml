@@ -27,7 +27,7 @@
         </StackPanel.Resources>
         <StackPanel Margin="0,30,0,0">
             <Label Margin="0,0,0,10" Content="Auto Credentials" Style="{DynamicResource DescriptionHeaderStyle}"/>
-            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Live" FlowDirection="LeftToRight" IsOn="{Binding Config.IsAdamsonEnable}"/>
+            <Label Margin="5,0,0,0" Content="Adamson Live"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
@@ -36,7 +36,7 @@
                          Text="{Binding Config.StudentId}"/>
                 <components:BindablePasswordBox Password="{Binding Config.AdamsonCredential}"/>
             </StackPanel>
-            <mah:ToggleSwitch Margin="5,0,0,0" Content="Adamson Blackboard" FlowDirection="LeftToRight" IsOn="{Binding Config.IsBlackboardEnable}"/>
+            <Label Margin="5,0,0,0" Content="Adamson Blackboard"/>
             <StackPanel Orientation="Horizontal" Margin="-5">
                 <TextBox Style="{StaticResource SettingTextBoxStyle}"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"

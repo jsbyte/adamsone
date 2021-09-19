@@ -7,17 +7,6 @@ namespace Adamsone.Models
     [JsonObject(MemberSerialization.OptOut)]
     public class Config : PropertyChangedBase
     {
-        private bool _isAdamsonEnable;
-        public bool IsAdamsonEnable
-        {
-            get => _isAdamsonEnable;
-            set
-            {
-                _isAdamsonEnable = value;
-                NotifyOfPropertyChange(nameof(IsAdamsonEnable));
-            }
-        }
-
         private string _studentId;
         public string StudentId
         {
@@ -28,6 +17,8 @@ namespace Adamsone.Models
                 NotifyOfPropertyChange(nameof(StudentId));
             }
         }
+
+        public bool IsAdamsonCredentialValid => !string.IsNullOrWhiteSpace(StudentId) && !string.IsNullOrWhiteSpace(AdamsonCredential);
 
         private string _adamsonCredential;
         public string AdamsonCredential
@@ -40,16 +31,7 @@ namespace Adamsone.Models
             }
         }
 
-        private bool _isBlackboardEnable;
-        public bool IsBlackboardEnable
-        {
-            get => _isBlackboardEnable;
-            set
-            {
-                _isBlackboardEnable = value;
-                NotifyOfPropertyChange(nameof(IsBlackboardEnable));
-            }
-        }
+        public bool IsBlackboardCredentialValid => !string.IsNullOrWhiteSpace(StudentId) && !string.IsNullOrWhiteSpace(BlackboardCredential);
 
         private string _blackboardCredential;
         public string BlackboardCredential
@@ -59,17 +41,6 @@ namespace Adamsone.Models
             {
                 _blackboardCredential = value;
                 NotifyOfPropertyChange(nameof(BlackboardCredential));
-            }
-        }
-
-        private bool _isEmailEnable;
-        public bool IsEmailEnable
-        {
-            get => _isEmailEnable;
-            set
-            {
-                _isEmailEnable = value;
-                NotifyOfPropertyChange(nameof(IsEmailEnable));
             }
         }
 
