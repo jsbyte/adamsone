@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 using CefSharp;
 
 namespace Adamsone.Handlers
@@ -8,7 +9,17 @@ namespace Adamsone.Handlers
         public bool OnBeforeBrowse(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool userGesture,
             bool isRedirect)
         {
-            return false;
+            var url = request.Url.ToUpper();
+            if (url.StartsWith("HTTPS://")
+                || url.StartsWith("HTTP://")
+                || url.StartsWith("DEVTOOLS://")
+                || url.StartsWith("CHROME-EXTENSION://"))
+            {
+                return false;
+            }
+
+            Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+            return true;
         }
 
         public void OnDocumentAvailableInMainFrame(IWebBrowser chromiumWebBrowser, IBrowser browser)
