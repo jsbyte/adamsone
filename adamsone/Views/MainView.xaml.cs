@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using System.Windows.Input;
+using MahApps.Metro.Controls;
 
 namespace Adamsone.Views
 {
@@ -10,6 +11,11 @@ namespace Adamsone.Views
         public MainView()
         {
             InitializeComponent();
+        }
+
+        private void ProfileDataGrid_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ProfileScrollViewer.ScrollToVerticalOffset(ProfileScrollViewer.VerticalOffset - e.Delta / 3);
         }
     }
 }
