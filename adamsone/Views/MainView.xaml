@@ -221,8 +221,8 @@
                         <!--Grade Information-->
                         <Label Grid.Row="1" Content="My Grade"/>
                         <DataGrid Grid.Row="2"
-                              ItemsSource="{Binding Source={StaticResource GroupedGrades}}">
                                   PreviewMouseWheel="ProfileDataGrid_OnPreviewMouseWheel"
+                                  ItemsSource="{Binding Source={StaticResource GroupedGrades}}">
                             <DataGrid.GroupStyle>
                                 <GroupStyle ContainerStyle="{StaticResource MahApps.Styles.GroupItem.DataGrid}">
                                     <GroupStyle.HeaderTemplate>
@@ -254,8 +254,8 @@
                         <!--Payment Information-->
                         <Label Grid.Row="3" Content="My Payment"/>
                         <DataGrid Grid.Row="4"
-                              ItemsSource="{Binding Payments}">
                                 PreviewMouseWheel="ProfileDataGrid_OnPreviewMouseWheel"
+                                ItemsSource="{Binding Payments}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding OrderNumber}" Width="1*" Header="OR No." />
                                 <DataGridTextColumn Binding="{Binding OrderDate}" Width="1*" Header="OR Date" />
@@ -269,8 +269,8 @@
                         <!--Assessment Fee-->
                         <Label Grid.Row="5" Content="Assessment Fees"/>
                         <DataGrid Grid.Row="6"
-                                  ItemsSource="{Binding Source={StaticResource GroupedAssessmentFees}}">
                                 PreviewMouseWheel="ProfileDataGrid_OnPreviewMouseWheel"
+                                ItemsSource="{Binding Source={StaticResource GroupedAssessmentFees}}">
                             <DataGrid.GroupStyle>
                                 <GroupStyle ContainerStyle="{StaticResource MahApps.Styles.GroupItem.DataGrid}">
                                     <GroupStyle.HeaderTemplate>
@@ -290,8 +290,8 @@
                                 </GroupStyle>
                             </DataGrid.GroupStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Transaction}" Width="4*" Header="Billing Details" />
-                                <DataGridTextColumn Binding="{Binding Amount}" Width="1*" Header="Amount" />
+                                <DataGridTextColumn Binding="{Binding Transaction}" Width="4*" Header="Billing Details"/>
+                                <DataGridTextColumn Binding="{Binding Amount}" Width="1*" Header="Amount"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
