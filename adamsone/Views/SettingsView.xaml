@@ -69,6 +69,7 @@
                 <Button Width="80"
                         Height="10"
                         Content="Refresh"
+                        mah:ControlsHelper.ContentCharacterCasing="Normal"
                         Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
             </DockPanel>
             <DockPanel Margin="5">
@@ -77,6 +78,7 @@
                         Width="80"
                         Height="10"
                         Content="Clear"
+                        mah:ControlsHelper.ContentCharacterCasing="Normal"
                         Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
             </DockPanel>
             <DockPanel Margin="5">
@@ -85,6 +87,7 @@
                         Width="80"
                         Height="10"
                         Content="Export"
+                        mah:ControlsHelper.ContentCharacterCasing="Normal"
                         Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
             </DockPanel>
         </StackPanel>
@@ -93,6 +96,7 @@
                     Width="80"
                     Height="10"
                     Content="Save"
+                    mah:ControlsHelper.ContentCharacterCasing="Normal"
                     Style="{DynamicResource MahApps.Styles.Button.Square}" HorizontalAlignment="Right"/>
         </StackPanel>
     </StackPanel>

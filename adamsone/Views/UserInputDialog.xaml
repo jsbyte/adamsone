@@ -5,6 +5,7 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
                      xmlns:cal="http://www.caliburnproject.org"
+                     xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                      mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid Margin="0,20,0,20">
@@ -33,23 +34,30 @@
         </Border>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0">
             <Button Content="{Binding ButtonOkContent}"
-            Width="80"
-            Margin="10,0"
-            HorizontalAlignment="Center" 
-            cal:Message.Attach="ButtonOk"
-            Style="{DynamicResource MahApps.Styles.Button.Square.Accent}"/>
+                    Width="80"
+                    Margin="10,0"
+                    HorizontalAlignment="Center" 
+                    cal:Message.Attach="ButtonOk"
+                    mah:ControlsHelper.ContentCharacterCasing="Normal"
+                    Style="{DynamicResource MahApps.Styles.Button.Square.Accent}"/>
             <Button Content="{Binding ButtonDeleteContent}"
+                    Foreground="White"
+                    Background="#FFFAAF89"
                     Width="80"
                     Margin="10,0"
                     HorizontalAlignment="Center" 
                     cal:Message.Attach="ButtonDelete"
-                    Style="{DynamicResource MahApps.Styles.Button.Square}"/>
+                    mah:ControlsHelper.ContentCharacterCasing="Normal"
+                    Style="{DynamicResource MahApps.Styles.Button.Square.Accent}"/>
             <Button Content="{Binding ButtonCancelContent}"
-            Width="80"
-            Margin="10,0"
-            HorizontalAlignment="Center" 
-            cal:Message.Attach="ButtonCancel"
-            Style="{DynamicResource MahApps.Styles.Button.Square}"/>
+                    Foreground="White"
+                    Background="#FF6666"
+                    Width="80"
+                    Margin="10,0"
+                    HorizontalAlignment="Center" 
+                    cal:Message.Attach="ButtonCancel"
+                    mah:ControlsHelper.ContentCharacterCasing="Normal"
+                    Style="{DynamicResource MahApps.Styles.Button.Square.Accent}"/>
         </StackPanel>
     </Grid>
 </dialog:CustomDialog>
